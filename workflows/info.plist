@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>blog.jingyi.leetcode</string>
+	<key>category</key>
+	<string>Internet</string>
+	<key>connections</key>
+	<dict>
+		<key>2F63474F-7089-4E3F-93F8-7C31E8B21B46</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>CFA244DD-BA72-4839-8330-0B71DE5B9181</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>B41FB490-1134-4A2A-BAFC-25D857619CD9</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>CFA244DD-BA72-4839-8330-0B71DE5B9181</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>CFA244DD-BA72-4839-8330-0B71DE5B9181</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>33AD2E86-16CB-46AA-B17A-0BFC32A66AED</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>cdpath</string>
+	<key>description</key>
+	<string>Query leetcode with question_id</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>leetcode query</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>browser</key>
+				<string></string>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string></string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>33AD2E86-16CB-46AA-B17A-0BFC32A66AED</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>lc</string>
+				<key>subtext</key>
+				<string>question_id please</string>
+				<key>text</key>
+				<string>LeetCode</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>B41FB490-1134-4A2A-BAFC-25D857619CD9</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>import sys
+import json
+
+query = sys.argv[1]
+
+fallback = "https://leetcode-cn.com/problemset/all/?search=%s"
+
+with open("index") as f:
+    index = json.load(f)
+
+try:
+    query = str(int(query))
+    slug = index.get(query)
+except ValueError:
+    slug = None
+
+
+if slug is None:
+    url = "https://leetcode-cn.com/problemset/all/?search=%s" % query
+else:
+    url = "https://leetcode-cn.com/problems/%s/" % slug
+
+
+sys.stdout.write(url)</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>3</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>CFA244DD-BA72-4839-8330-0B71DE5B9181</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>text</key>
+				<string>LeetCode</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.fallback</string>
+			<key>uid</key>
+			<string>2F63474F-7089-4E3F-93F8-7C31E8B21B46</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>data source:
+https://leetcode-cn.com/problemset/all/</string>
+	<key>uidata</key>
+	<dict>
+		<key>2F63474F-7089-4E3F-93F8-7C31E8B21B46</key>
+		<dict>
+			<key>xpos</key>
+			<integer>130</integer>
+			<key>ypos</key>
+			<integer>210</integer>
+		</dict>
+		<key>33AD2E86-16CB-46AA-B17A-0BFC32A66AED</key>
+		<dict>
+			<key>xpos</key>
+			<integer>475</integer>
+			<key>ypos</key>
+			<integer>60</integer>
+		</dict>
+		<key>B41FB490-1134-4A2A-BAFC-25D857619CD9</key>
+		<dict>
+			<key>xpos</key>
+			<integer>125</integer>
+			<key>ypos</key>
+			<integer>60</integer>
+		</dict>
+		<key>CFA244DD-BA72-4839-8330-0B71DE5B9181</key>
+		<dict>
+			<key>xpos</key>
+			<integer>310</integer>
+			<key>ypos</key>
+			<integer>60</integer>
+		</dict>
+	</dict>
+	<key>variablesdontexport</key>
+	<array/>
+	<key>version</key>
+	<string>v0.0.1</string>
+	<key>webaddress</key>
+	<string>https://github.com/cdpath/leetcode_tools</string>
+</dict>
+</plist>
